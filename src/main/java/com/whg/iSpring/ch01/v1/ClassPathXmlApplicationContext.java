@@ -54,6 +54,7 @@ public class ClassPathXmlApplicationContext {
             e.printStackTrace();
             return null;
         }
+
         singletonMap.put(id, bean);
         return bean;
     }
