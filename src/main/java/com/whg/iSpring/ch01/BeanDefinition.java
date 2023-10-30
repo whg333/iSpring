@@ -1,4 +1,4 @@
-package com.whg.iSpring.ch01.v1;
+package com.whg.iSpring.ch01;
 
 public class BeanDefinition {
 
