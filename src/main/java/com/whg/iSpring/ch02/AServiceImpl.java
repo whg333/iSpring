@@ -1,8 +1,8 @@
-package com.whg.iSpring.ch01;
+package com.whg.iSpring.ch02;
 
 public class AServiceImpl implements AService{
     @Override
     public void sayHi() {
-        System.out.println("Hi, ch01");
+        System.out.println("Hi, ch02");
     }
 }
