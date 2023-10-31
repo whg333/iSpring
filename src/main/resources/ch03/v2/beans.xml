@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="bservice" class="com.whg.iSpring.ch03.AServiceImpl" />
+</beans>
