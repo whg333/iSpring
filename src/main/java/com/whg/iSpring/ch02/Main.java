@@ -1,6 +1,6 @@
-package com.whg.iSpring.ch02.v2;
+package com.whg.iSpring.ch02;
 
-import com.whg.iSpring.ch02.AService;
+import com.whg.iSpring.ch02.v2.ClassPathXmlApplicationContext;
 
 public class Main {
 

@@ -1,7 +1,5 @@
 package com.whg.iSpring.ch02.v2;
 
-import com.whg.iSpring.ch02.BeanDefinition;
-
 import java.util.concurrent.ConcurrentHashMap;
 
 public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {

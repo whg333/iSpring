@@ -1,6 +1,5 @@
 package com.whg.iSpring.ch02.v2;
 
-import com.whg.iSpring.ch02.BeanDefinition;
 import org.dom4j.Element;
 
 public class XmlBeanDefinitionReader {
