@@ -1,5 +1,8 @@
 package com.whg.iSpring.ch03.v2;
 
+import com.whg.iSpring.ch03.v2.definition.SimpleBeanFactory;
+import com.whg.iSpring.ch03.v2.definition.XmlBeanDefinitionReader;
+
 public class ClassPathXmlApplicationContext implements BeanFactory{
 
     private final SimpleBeanFactory beanFactory;
