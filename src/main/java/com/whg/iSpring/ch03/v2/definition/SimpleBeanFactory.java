@@ -72,7 +72,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             for(int i=0;i<propertyCount;i++){
                 BeanProperty property = properties.getProperty(i);
                 String name = property.getName();
-                String setMethodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
+                String setMethodName = "set" + name.substring(0, 1).toUpperCase() + name.substring(1);
 
                 TypeValueObj typeValueObj = parseTypeValueObj(property);
                 Class<?>[] argsTypes = { typeValueObj.getType() };
