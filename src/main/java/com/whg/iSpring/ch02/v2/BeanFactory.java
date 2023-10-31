@@ -1,8 +1,6 @@
 package com.whg.iSpring.ch02.v2;
 
-import com.whg.iSpring.ch02.BeanDefinition;
-
 public interface BeanFactory {
-    void registerBeanDefinition(BeanDefinition beanDefinition);
+    void registerBean(String id, Object beanObj);
     Object getBean(String id);
 }

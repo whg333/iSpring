@@ -2,26 +2,28 @@ package com.whg.iSpring.ch02.v2;
 
 import com.whg.iSpring.ch02.BeanDefinition;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class SimpleBeanFactory implements BeanFactory{
+public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
-    private final Map<String, BeanDefinition> beanDefinitionMap = new HashMap<>();
-    private final Map<String, Object> beanMap = new HashMap<>();
+    private final ConcurrentHashMap<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
-    @Override
     public void registerBeanDefinition(BeanDefinition beanDefinition) {
         String id = beanDefinition.getId();
-        if(beanDefinitionMap.put(id, beanDefinition) != null){
+        if (beanDefinitionMap.put(id, beanDefinition) != null) {
             throw new BeanException(String.format("id为%s的Bean重复定义", id));
         }
     }
 
     @Override
+    public void registerBean(String id, Object beanObj) {
+        registerSingleton(id, beanObj);
+    }
+
+    @Override
     public Object getBean(String id) {
-        Object bean = beanMap.get(id);
-        if(bean != null){
+        Object bean = getSingleton(id);
+        if (bean != null) {
             return bean;
         }
 
@@ -37,7 +39,7 @@ public class SimpleBeanFactory implements BeanFactory{
             throw new BeanException(String.format("id为%s的Bean初始化失败", id));
         }
 
-        beanMap.put(id, bean);
+        registerSingleton(id, bean);
         return bean;
     }
 }

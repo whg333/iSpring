@@ -1,10 +1,8 @@
 package com.whg.iSpring.ch02.v2;
 
-import com.whg.iSpring.ch02.BeanDefinition;
-
 public class ClassPathXmlApplicationContext implements BeanFactory{
 
-    private final BeanFactory beanFactory;
+    private final SimpleBeanFactory beanFactory;
 
     public ClassPathXmlApplicationContext(String fileName){
         beanFactory = new SimpleBeanFactory();
@@ -14,8 +12,8 @@ public class ClassPathXmlApplicationContext implements BeanFactory{
     }
 
     @Override
-    public void registerBeanDefinition(BeanDefinition beanDefinition) {
-        beanFactory.registerBeanDefinition(beanDefinition);
+    public void registerBean(String id, Object beanObj) {
+        beanFactory.registerBean(id, beanObj);
     }
 
     @Override
