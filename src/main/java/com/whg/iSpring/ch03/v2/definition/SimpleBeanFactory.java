@@ -72,7 +72,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             for(int i=0;i<propertyCount;i++){
                 BeanProperty property = properties.getProperty(i);
                 String name = property.getName();
-                String setMethodName = "set"+name.toUpperCase().charAt(0)+name.substring(1);
+                String setMethodName = "set" + name.toUpperCase().charAt(0) + name.substring(1);
 
                 TypeValueObj typeValueObj = parseTypeValueObj(property);
                 Class<?>[] argsTypes = { typeValueObj.getType() };
@@ -103,20 +103,20 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return parseTypeValueObj(typeValueStr.getType(), typeValueStr.getValue());
     }
 
-    private TypeValueObj parseTypeValueObj(String t, String v){
+    private TypeValueObj parseTypeValueObj(String typeStr, String valueStr){
         Class<?> type;
         Object value;
-        if("String".equals(t)){
+        if("String".equals(typeStr)){
             type = String.class;
-            value = v;
-        }else if("int".equals(t)){
+            value = valueStr;
+        }else if("int".equals(typeStr)){
             type = int.class;
-            value = Integer.valueOf(v);
-        }else if("double".equals(t)){
+            value = Integer.valueOf(valueStr);
+        }else if("double".equals(typeStr)){
             type = double.class;
-            value = Double.valueOf(v);
+            value = Double.valueOf(valueStr);
         }else{
-            throw new BeanException("Unknown type="+t);
+            throw new BeanException("Unknown type="+typeStr);
         }
         return new TypeValueObj(type, value);
     }
