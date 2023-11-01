@@ -44,7 +44,6 @@ public class CircularDependencyBeanFactory extends ReferenceBeanFactory {
         Object bean = doCreateBean(beanDefinition);
         earlySingletonMap.put(beanDefinition.getId(), bean);
         handleProperties(bean, beanDefinition);
-
         return bean;
     }
 
