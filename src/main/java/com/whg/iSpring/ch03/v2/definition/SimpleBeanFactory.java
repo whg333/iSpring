@@ -35,7 +35,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
 
     @Override
     public Object getBean(String id) {
-        Object bean = getSingleton(id);
+        Object bean = doGetBean(id);
         if (bean != null) {
             return bean;
         }
@@ -52,9 +52,13 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             throw new BeanException(String.format("id为%s的Bean初始化失败", id));
         }
 
-        registerSingleton(id, bean);
+        registerBean(id, bean);
         handleBeanPostProcessor(); // 预留BeanPostProcessor的位置
         return bean;
+    }
+
+    protected Object doGetBean(String id){
+        return getSingleton(id);
     }
 
     /**
@@ -111,7 +115,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 argsTypes[0] = typeValueObj.getType();
                 args[0] = typeValueObj.getValue();
 
-                Method setMethod = bean.getClass().getDeclaredMethod(setMethodName, argsTypes);
+                Method setMethod = bean.getClass().getMethod(setMethodName, argsTypes);
                 setMethod.invoke(bean, args);
             }
         }
