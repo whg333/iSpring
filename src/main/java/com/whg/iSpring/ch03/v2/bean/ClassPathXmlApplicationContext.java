@@ -1,4 +1,4 @@
-package com.whg.iSpring.ch03.v2;
+package com.whg.iSpring.ch03.v2.bean;
 
 import com.whg.iSpring.ch03.v2.definition.SimpleBeanFactory;
 import com.whg.iSpring.ch03.v2.definition.XmlBeanDefinitionReader;
@@ -7,8 +7,8 @@ public class ClassPathXmlApplicationContext implements BeanFactory{
 
     private final SimpleBeanFactory beanFactory;
 
-    public ClassPathXmlApplicationContext(String fileName){
-        beanFactory = new SimpleBeanFactory();
+    public ClassPathXmlApplicationContext(SimpleBeanFactory beanFactory, String fileName){
+        this.beanFactory = beanFactory;
         BeanResource resource = new ClassPathXmlResource(fileName); // 解析xml
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
         reader.loadBeanDefinition(resource); //遍历解析xml后的内容，构建bean定义并注册到beanFactory

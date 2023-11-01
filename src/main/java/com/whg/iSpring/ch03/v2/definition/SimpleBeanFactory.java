@@ -1,8 +1,8 @@
 package com.whg.iSpring.ch03.v2.definition;
 
-import com.whg.iSpring.ch03.v2.BeanException;
-import com.whg.iSpring.ch03.v2.BeanFactory;
-import com.whg.iSpring.ch03.v2.DefaultSingletonBeanRegistry;
+import com.whg.iSpring.ch03.v2.bean.BeanException;
+import com.whg.iSpring.ch03.v2.bean.BeanFactory;
+import com.whg.iSpring.ch03.v2.bean.DefaultSingletonBeanRegistry;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
 
-    private final ConcurrentHashMap<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
+    protected final ConcurrentHashMap<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<>();
 
     public void registerBeanDefinition(BeanDefinition beanDefinition) {
         String id = beanDefinition.getId();
@@ -49,7 +49,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return bean;
     }
 
-    private Object createBean(BeanDefinition beanDefinition) throws ClassNotFoundException,
+    protected Object createBean(BeanDefinition beanDefinition) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
         Object bean;
 
@@ -86,7 +86,7 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return bean;
     }
 
-    private TypeValueArray parseTypeValueArray(List<TypeValueStr> list){
+    protected TypeValueArray parseTypeValueArray(List<TypeValueStr> list){
         int size = list.size();
         Class<?>[] types = new Class[size];
         Object[] values = new Object[size];
@@ -99,11 +99,10 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         return new TypeValueArray(types, values);
     }
 
-    private TypeValueObj parseTypeValueObj(TypeValueStr typeValueStr){
-        return parseTypeValueObj(typeValueStr.getType(), typeValueStr.getValue());
-    }
+    protected TypeValueObj parseTypeValueObj(TypeValueStr typeValueStr){
+        String typeStr = typeValueStr.getType();
+        String valueStr = typeValueStr.getValue();
 
-    private TypeValueObj parseTypeValueObj(String typeStr, String valueStr){
         Class<?> type;
         Object value;
         if("String".equals(typeStr)){

@@ -1,4 +1,4 @@
-package com.whg.iSpring.ch03;
+package com.whg.iSpring.ch03.v2;
 
 public class AServiceImpl implements AService{
 

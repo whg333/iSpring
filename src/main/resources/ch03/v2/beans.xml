@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans>
-    <bean id="aservice" class="com.whg.iSpring.ch03.AServiceImpl">
+    <bean id="aservice" class="com.whg.iSpring.ch03.v2.AServiceImpl">
         <constructor-arg type="String" name="name" value="abc"/>
         <constructor-arg type="int" name="level" value="3"/>
         <property type="String" name="property1" value="Someone says"/>

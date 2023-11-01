@@ -1,4 +1,4 @@
-package com.whg.iSpring.ch03.v2;
+package com.whg.iSpring.ch03.v2.bean;
 
 public interface SingletonBeanRegistry {
     void registerSingleton(String id, Object beanObj);

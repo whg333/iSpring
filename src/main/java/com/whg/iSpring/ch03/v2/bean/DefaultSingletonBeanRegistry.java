@@ -1,4 +1,4 @@
-package com.whg.iSpring.ch03.v2;
+package com.whg.iSpring.ch03.v2.bean;
 
 import java.util.concurrent.ConcurrentHashMap;
 

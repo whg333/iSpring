@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+    <bean id="a" class="com.whg.iSpring.ch03.v3.ABean">
+        <constructor-arg type="String" name="name" value="abc"/>
+        <constructor-arg type="int" name="level" value="3"/>
+        <property type="String" name="property1" value="Someone says"/>
+        <property type="double" name="property2" value="3.14"/>
+
+        <property type="com.whg.iSpring.ch03.v3.BBean" name="bbean" ref="b"/>
+    </bean>
+    <bean id="b" class="com.whg.iSpring.ch03.v3.BBean">
+        <!--<property type="com.whg.iSpring.ch03.v3.CBean" name="cbean" ref="c"/>-->
+    </bean>
+    <!--
+    <bean id="c" class="com.whg.iSpring.ch03.v3.CBean">
+        <property type="com.whg.iSpring.ch03.v2.AServiceImpl" name="abean" ref="a"/>
+    </bean>
+    -->
+</beans>

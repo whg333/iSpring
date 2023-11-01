@@ -1,6 +1,6 @@
 package com.whg.iSpring.ch03.v2.definition;
 
-import com.whg.iSpring.ch03.v2.BeanResource;
+import com.whg.iSpring.ch03.v2.bean.BeanResource;
 import org.dom4j.Element;
 
 import java.util.List;
@@ -36,7 +36,8 @@ public class XmlBeanDefinitionReader {
                 String type = e.attributeValue("type");
                 String name = e.attributeValue("name");
                 String value = e.attributeValue("value");
-                properties.addProperty(new BeanProperty(type, name, value));
+                String ref = e.attributeValue("ref");
+                properties.addProperty(new BeanProperty(type, name, value, ref));
             }
             beanDefinition.setProperties(properties);
 
