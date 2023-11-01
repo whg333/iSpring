@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class DefaultSingletonBeanRegistry implements SingletonBeanRegistry {
 
-    private final ConcurrentHashMap<String, Object> singletonMap = new ConcurrentHashMap<>();
+    protected final ConcurrentHashMap<String, Object> singletonMap = new ConcurrentHashMap<>();
 
     @Override
     public void registerSingleton(String id, Object beanObj) {

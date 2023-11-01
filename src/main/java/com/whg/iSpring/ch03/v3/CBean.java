@@ -4,9 +4,8 @@ public class CBean {
 
     private ABean abean;
 
-    @Override
-    public String toString() {
-        return "CBean{" +
+    public String toStr() {
+        return this+"["+hashCode()+"] -> CBean{" +
                 "abean=" + abean +
                 '}';
     }

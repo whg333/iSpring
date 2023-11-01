@@ -9,11 +9,9 @@
         <property name="bbean" ref="b"/>
     </bean>
     <bean id="b" class="com.whg.iSpring.ch03.v3.BBean">
-        <!--<property name="cbean" ref="c"/>-->
+        <property name="cbean" ref="c"/>
     </bean>
-    <!--
     <bean id="c" class="com.whg.iSpring.ch03.v3.CBean">
         <property name="abean" ref="a"/>
     </bean>
-    -->
 </beans>
