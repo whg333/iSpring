@@ -51,13 +51,21 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
 
     protected Object createBean(BeanDefinition beanDefinition) throws ClassNotFoundException,
             InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
-        Object bean;
 
+        Object bean = doCreateBean(beanDefinition);
+        handleProperties(bean, beanDefinition);
+        return bean;
+    }
+
+    protected Object doCreateBean(BeanDefinition beanDefinition) throws ClassNotFoundException,
+            InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+
+        Object bean;
         Class<?> clazz = Class.forName(beanDefinition.getClassName());
         BeanConstructorArgs beanArgs = beanDefinition.getArgs();
         int beanArgCount = beanArgs.getArgCount();
         if(beanArgCount <= 0){
-                bean = clazz.newInstance();
+            bean = clazz.newInstance();
         }else{
             TypeValueArray typeValueArray = parseTypeValueArray(beanArgs.getList());
             Class<?>[] argsTypes = typeValueArray.getTypes();
@@ -65,6 +73,11 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
             Object[] initArgs = typeValueArray.getValues();
             bean = constructor.newInstance(initArgs);
         }
+        return bean;
+    }
+
+    protected void handleProperties(Object bean, BeanDefinition beanDefinition) throws NoSuchMethodException,
+            InvocationTargetException, IllegalAccessException {
 
         BeanProperties properties = beanDefinition.getProperties();
         int propertyCount = properties.getPropertyCount();
@@ -74,16 +87,20 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
                 String name = property.getName();
                 String setMethodName = "set" + name.substring(0, 1).toUpperCase() + name.substring(1);
 
-                TypeValueObj typeValueObj = parseTypeValueObj(property);
-                Class<?>[] argsTypes = { typeValueObj.getType() };
-                Object[] args = { typeValueObj.getValue() };
+                Class<?>[] argsTypes = new Class<?>[1];
+                Object[] args = new Object[1];
+                TypeValueObj typeValueObj = handleTypeValue(property);
+                argsTypes[0] = typeValueObj.getType();
+                args[0] = typeValueObj.getValue();
 
-                Method setMethod = clazz.getDeclaredMethod(setMethodName, argsTypes);
+                Method setMethod = bean.getClass().getDeclaredMethod(setMethodName, argsTypes);
                 setMethod.invoke(bean, args);
             }
         }
+    }
 
-        return bean;
+    protected TypeValueObj handleTypeValue(BeanProperty property){
+        return parseTypeValueObj(property);
     }
 
     protected TypeValueArray parseTypeValueArray(List<TypeValueStr> list){

@@ -13,8 +13,6 @@ public class Main {
         System.out.println("After getBean(\"a\") : " +a);
         BBean b = (BBean) ctx.getBean("b");
         System.out.println("b = "+b.toStr());
-        // CBean c = (CBean) ctx.getBean("c");
-        // System.out.println("c="+c);
     }
 
 }
