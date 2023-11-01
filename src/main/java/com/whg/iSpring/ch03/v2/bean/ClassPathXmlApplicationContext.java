@@ -9,9 +9,10 @@ public class ClassPathXmlApplicationContext implements BeanFactory{
 
     public ClassPathXmlApplicationContext(SimpleBeanFactory beanFactory, String fileName){
         this.beanFactory = beanFactory;
-        BeanResource resource = new ClassPathXmlResource(fileName); // 解析xml
+        BeanResource resource = new ClassPathXmlResource(fileName); // 读取xml
         XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(beanFactory);
-        reader.loadBeanDefinition(resource); //遍历解析xml后的内容，构建bean定义并注册到beanFactory
+        reader.loadBeanDefinition(resource); //遍历去解析读取xml后的内容，构建bean定义并注册到beanFactory
+        beanFactory.refresh();
     }
 
     @Override

@@ -21,6 +21,13 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         }
     }
 
+    public void refresh(){
+        for(String id: beanDefinitionMap.keySet()){
+            // System.err.println(String.format("refresh call getBean(%s)", id));
+            getBean(id);
+        }
+    }
+
     @Override
     public void registerBean(String id, Object beanObj) {
         registerSingleton(id, beanObj);
@@ -46,7 +53,18 @@ public class SimpleBeanFactory extends DefaultSingletonBeanRegistry implements B
         }
 
         registerSingleton(id, bean);
+        handleBeanPostProcessor(); // 预留BeanPostProcessor的位置
         return bean;
+    }
+
+    /**
+     * 1、postProcessBeforeInitialization
+     * 2、afterPropertiesSet
+     * 3、init-method
+     * 4、postProcessAfterInitialization
+     */
+    protected void handleBeanPostProcessor(){
+
     }
 
     protected Object createBean(BeanDefinition beanDefinition) throws ClassNotFoundException,

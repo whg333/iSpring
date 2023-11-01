@@ -21,7 +21,7 @@ public class ClassPathXmlResource implements BeanResource{
             elementIterator =  rootElement.elements().iterator();
         } catch (DocumentException e) {
             e.printStackTrace();
-            throw new BeanException(String.format("解析xml文件[%s]出错", fileName));
+            throw new BeanException(String.format("读取xml文件[%s]出错", fileName));
         }
     }
 
